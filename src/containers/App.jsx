@@ -1,12 +1,12 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import './App.css';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import GMap from '../components/GMap';
+import React from 'react'
+import { Route } from 'react-router-dom'
+import './App.css'
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
+import GMap from '../components/GMap'
 
 function App () {
-  let pos = []
+  const pos = []
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(function (position) {
       pos.push(position.coords.latitude, position.coords.longitude)
@@ -23,11 +23,11 @@ function App () {
         render={() => <Footer />}
       />
       <Route
-        path='/'
+        path='/home'
         render={() => <GMap coord={pos} />}
       />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
