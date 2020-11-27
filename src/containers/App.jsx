@@ -4,6 +4,7 @@ import './App.css';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import GMap from '../components/GMap';
+import AboutPage from '../pages/AboutPage.js'
 
 function App () {
   let pos = []
@@ -19,12 +20,16 @@ function App () {
         render={() => <Nav />}
       />
       <Route
+        exact path='/'
+        render={() => <GMap coord={pos} />}
+      />
+       <Route
         path='/'
         render={() => <Footer />}
       />
       <Route
-        path='/'
-        render={() => <GMap coord={pos} />}
+        path='/nosotros'
+        render={() => <AboutPage />}
       />
     </div>
   );
