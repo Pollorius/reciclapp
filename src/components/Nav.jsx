@@ -1,29 +1,22 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import NavBar from 'react-bootstrap/NavBar';
-import Nav from 'react-bootstrap/Nav';
-import {Link} from 'react-router-dom';
-import Logo from './reciclar-senal.png'
+import React from 'react'
+import Container from 'react-bootstrap/Container'
+import NavBar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 
-export default function Navegation () {
+export default function Navigation () {
   return (
-
-    <Container className='p-0' fluid={true}>
-      <NavBar className='shadow mb-5 bg-dark rounded' variant='dark' expand='lg'>
-        <NavBar.Brand className='pl-2 font-weight-light'>
-          <img className='m-2' src={Logo} width='25' height='25'/>
-          Reciclapp
-          </NavBar.Brand>
-        <NavBar.Toggle className='border-0' aria-controls='navbar-toggle'/>
-        <NavBar.Collapse id='navbar-toggle'>
+    <Container className='p-0' fluid>
+      <NavBar className='shadow-lg mb-3' collapseOnSelect bg='dark' variant='dark' expand='lg'>
+        <NavBar.Brand href='/home'>ReciclApp</NavBar.Brand>
+        <NavBar.Toggle className='border-0' aria-controls='responsive-navbar-nav' />
+        <NavBar.Collapse id='responsive-navbar-nav'>
           <Nav className='ml-auto'>
-            <Link className='nav-link' to='/'>Home</Link>
-            <Link className='nav-link' to='/nosotros'>Nosotros</Link>
-            <Link className='nav-link' to='/contacto'>Contacto</Link>
+            <Nav.Link href='/home'>Home</Nav.Link>
+            <Nav.Link href='/nosotros'>Nosotros</Nav.Link>
+            <Nav.Link href='/contacto'>Contacto</Nav.Link>
           </Nav>
         </NavBar.Collapse>
       </NavBar>
-      
     </Container>
   )
 }
