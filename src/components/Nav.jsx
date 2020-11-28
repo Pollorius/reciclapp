@@ -1,34 +1,18 @@
-// import React from 'react'
-// import Container from 'react-bootstrap/Container'
-// import NavBar from 'react-bootstrap/Navbar'
-// import Nav from 'react-bootstrap/Nav'
-
-// export default function Navigation () {
-//   return (
-//     <Container className='p-0' fluid>
-//       <NavBar className='shadow-lg mb-3' collapseOnSelect bg='dark' variant='dark' expand='lg'>
-//         <NavBar.Brand href='/home'>ReciclApp</NavBar.Brand>
-//         <NavBar.Toggle className='border-0' aria-controls='responsive-navbar-nav' />
-//         <NavBar.Collapse id='responsive-navbar-nav'>
-//           <Nav className='ml-auto'>
-//             <Nav.Link href='/home'>Home</Nav.Link>
-//             <Nav.Link href='/nosotros'>Nosotros</Nav.Link>
-//             <Nav.Link href='/contacto'>Contacto</Nav.Link>
-//           </Nav>
-//         </NavBar.Collapse>
-//       </NavBar>
-//     </Container>
-//   )
-// }
-
-
 import React from 'react';
-import {AppBar, Toolbar, IconButton, Typography, MenuItem, MenuList} from '@material-ui/core';
-import Menu from '@material-ui/icons/Menu';
-import {fade, makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import {fade} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +61,9 @@ const useStyles = makeStyles((theme) => ({
   title:{
     flexGrow: 1
   },
- 
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
 }));
 
 
@@ -87,22 +73,62 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar (){
 
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+ 
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className='App'>
-      <AppBar position='sticky' style={{backgroundColor: 'gray' }}>
+      <AppBar position='sticky' style={{backgroundColor: 'green'}}>
         <Toolbar>
-          <IconButton aria-label='app' color='inherit'>
-            <Menu>
-              <MenuItem>
-              <MenuList>
-                Nosotros
-              </MenuList>
-              </MenuItem>
-            </Menu>
-          </IconButton>
-          <Typography variant='h6' className={classes.title}>Recicl App</Typography>
-          <div className={classes.search}  >
+
+        <div>
+            <IconButton 
+              edge="start" 
+              className={classes.menuButton} 
+              color="inherit" 
+              aria-label="menu"
+              onClick={handleMenu}>
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Inicio</MenuItem>
+                <MenuItem onClick={handleClose}>Nosotros</MenuItem>
+                <MenuItem onClick={handleClose}>contacto</MenuItem>
+              </Menu>
+            </div>
+  
+        
+          <Typography variant='subtitle1' display='initial' align='left' className={classes.title} >
+            <Box  fontFamily="Creo" letterSpacing={4} fontWeight='fontWeightLight' >
+            ECO RESUELTO
+            </Box>
+           
+            </Typography>
+            <div className={classes.search}  >
             <div className={classes.searchIcon}>
               
               <SearchIcon />
