@@ -26,10 +26,6 @@ function App () {
         path='/'
         render={() => <Footer />}
       />
-      <Route
-        path='/home'
-        render={() => <GMap coord={pos} />}
-      />
     </div>
   )
 }
