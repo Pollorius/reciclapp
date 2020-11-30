@@ -3,7 +3,8 @@ import { withStyles } from '@material-ui/core/styles'
 import MuiAccordion from '@material-ui/core/Accordion'
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
-import Typography from '@material-ui/core/Typography'
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box'
 
 const Accordion = withStyles({
   root: {
@@ -24,13 +25,14 @@ const Accordion = withStyles({
 
 const AccordionSummary = withStyles({
   root: {
-    backgroundColor: 'rgba(0, 0, 0, .03)',
-    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    backgroundColor: 'rgba()',
+    borderBottom: '1px solid rgb(204,204, 102)',
     marginBottom: -1,
     minHeight: 56,
     '&$expanded': {
       minHeight: 56
-    }
+    },
+    borderRadius: '10px'
   },
   content: {
     '&$expanded': {
@@ -56,33 +58,45 @@ export default function Shops () {
   return (
     <div>
       <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-        <AccordionSummary aria-controls='panel1d-content' id='panel1d-header'>
-          <Typography>Comercio #1</Typography>
+        <AccordionSummary style={{backgroundColor: 'rgb(224, 234, 215)'}} aria-controls='panel1d-content' id='panel1d-header'>
+          <Typography >
+          <Box  fontFamily="Roboto" letterSpacing={3} fontWeight='' >
+             Comercio #1
+            </Box>
+            </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
+        <AccordionDetails style={{backgroundColor: 'rgb(140, 140, 72)'}}>
+          <Typography style={{color: 'white'}}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-        <AccordionSummary aria-controls='panel2d-content' id='panel2d-header'>
-          <Typography>Comercio #2</Typography>
+      <Accordion  square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+        <AccordionSummary style={{backgroundColor: 'rgb(224, 234, 215)'}} aria-controls='panel2d-content' id='panel2d-header'>
+          <Typography >
+          <Box  fontFamily="Roboto" letterSpacing={3} fontWeight='' >
+             Comercio #2
+            </Box>
+            </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
+        <AccordionDetails style={{backgroundColor: 'rgb(140, 140, 72)'}}>
+          <Typography style={{color: 'white'}}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-        <AccordionSummary aria-controls='panel3d-content' id='panel3d-header'>
-          <Typography>Comercio #3</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
+        <AccordionSummary  style={{backgroundColor: 'rgb(224, 234, 215)'}} aria-controls='panel3d-content' id='panel3d-header'>
           <Typography>
+          <Box  fontFamily="Roboto" letterSpacing={3} fontWeight='' >
+             Comercio #3
+            </Box>
+            </Typography>
+        </AccordionSummary>
+        <AccordionDetails style={{backgroundColor: 'rgb(140, 140, 72)'}}>
+          <Typography style={{color: 'white'}}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
           </Typography>

@@ -31,8 +31,8 @@ function App () {
             coords={pos}
           />}
       />
-      <div className='d-flex justify-content-center align-items-center shadow-lg p-2 bg-success text-white m-1'>
-        <h5>Comercios Cercanos</h5>
+      <div style={{backgroundColor: 'rgb(51, 102, 51)'}} className='d-flex justify-content-center align-items-center shadow-lg p-2 text-white m-1'>
+        <h5 >Comercios Cercanos</h5>
       </div>
       <div style={{ margin: '5px' }}>
         <Route

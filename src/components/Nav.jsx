@@ -1,32 +1,26 @@
-// import React from 'react'
-// import Container from 'react-bootstrap/Container'
-// import NavBar from 'react-bootstrap/Navbar'
-// import Nav from 'react-bootstrap/Nav'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import {fade} from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
+import Logo from './eco.png';
 
-// export default function Navigation () {
-//   return (
-//     <Container className='p-0' fluid>
-//       <NavBar className='shadow-lg mb-3' collapseOnSelect bg='dark' variant='dark' expand='lg'>
-//         <NavBar.Brand href='/home'>ReciclApp</NavBar.Brand>
-//         <NavBar.Toggle className='border-0' aria-controls='responsive-navbar-nav' />
-//         <NavBar.Collapse id='responsive-navbar-nav'>
-//           <Nav className='ml-auto'>
-//             <Nav.Link href='/home'>Home</Nav.Link>
-//             <Nav.Link href='/nosotros'>Nosotros</Nav.Link>
-//             <Nav.Link href='/contacto'>Contacto</Nav.Link>
-//           </Nav>
-//         </NavBar.Collapse>
-//       </NavBar>
-//     </Container>
-//   )
-// }
-
-import React from 'react'
-import { AppBar, Toolbar, IconButton, Typography, MenuItem, MenuList } from '@material-ui/core'
-import Menu from '@material-ui/icons/Menu'
-import { fade, makeStyles } from '@material-ui/core/styles'
-import SearchIcon from '@material-ui/icons/Search'
-import InputBase from '@material-ui/core/InputBase'
+import { withStyles } from '@material-ui/core/styles';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import EmailIcon from '@material-ui/icons/Email';
+import GroupIcon from '@material-ui/icons/Group';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
-      width: 'auto'
-    }
+      width: '50%',
+    },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -71,30 +65,129 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   },
-  title: {
-    flexGrow: 1
-  }
+  title:{
+    flexGrow: 1, 
+    position: 'relative',
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  paper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: theme.spacing(16),
+      height: theme.spacing(16),
+    },
+  },
+}));
 
-}))
+// estilos menu despegable 
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+  />
+));
 
-export default function NavBar () {
-  const classes = useStyles()
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      backgroundColor: 'rgb(51, 102, 51)',
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
+
+export default function NavBar (){
+
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+ 
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   return (
-    <div className='App'>
-      <AppBar position='sticky' style={{ backgroundColor: 'green' }}>
+    <div className='root'>
+      <AppBar position='sticky' style={{backgroundColor: 'rgb(51, 102, 51)'}}>
         <Toolbar>
-          <IconButton aria-label='app' color='inherit'>
-            <Menu>
-              <MenuItem>
-                <MenuList>
-                Nosotros
-                </MenuList>
-              </MenuItem>
-            </Menu>
-          </IconButton>
-          <Typography variant='h6' className={classes.title}>ECO RESUELTO</Typography>
-          <div className={classes.search}>
+
+        <div>
+            <IconButton 
+              edge="start" 
+              className={classes.menuButton} 
+              color="inherit" 
+              aria-label="menu"
+              onClick={handleMenu}
+              aria-controls="customized-menu"
+              aria-haspopup="true"
+              >
+                <MenuIcon />
+              </IconButton>
+              <div className={classes.root}>
+              <Paper 
+                elevation={3}
+              >
+              <StyledMenu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                 <StyledMenuItem>
+                    <ListItemIcon>
+                      <HomeIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText primary="Inicio" onClick={handleClose}/>
+                  </StyledMenuItem>
+                  <StyledMenuItem>
+                    <ListItemIcon>
+                      <GroupIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText primary="Nosotros" onClick={handleClose}/>
+                  </StyledMenuItem>
+                  <StyledMenuItem>
+                    <ListItemIcon>
+                      <EmailIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText primary="Contacto" onClick={handleClose}/>
+                  </StyledMenuItem>
+              </StyledMenu>
+              </Paper>
+              </div>
+            </div>
+          <Typography variant='subtitle1' display='initial' align='left' className={classes.title} >
+            {/* <Box  fontFamily="Roboto" letterSpacing={4} fontWeight='fontWeightLight' >
+            ECO RESUELTO
+            </Box> */}
+            <img src={Logo} width='140' className='pr-2'/>
+            </Typography>
+            <div className={classes.search}  >
             <div className={classes.searchIcon}>
 
               <SearchIcon />
