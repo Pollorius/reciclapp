@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
+import credentials from '../credentials'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import GMap from '../components/GMap'
@@ -14,27 +15,35 @@ function App () {
     })
   }
   return (
-    <div className='d-flex flex-column justify-content-center'>
-      <div className='order-0'>
-        <Route
-          path='/'
-          render={() => <Nav />}
-        />
-        <Route
-          path='/'
-          render={() => <GMap coord={pos} />}
-        />
-        <Route
-          path='/'
-          render={() => <Footer />}
-        />
+    <div>
+      <Route
+        path='/'
+        render={() => <Nav />}
+      />
+      <Route
+        path='/'
+        render={() =>
+          <GMap
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`}
+            containerElement={<div style={{ height: '400px', display: 'flex', justifyContent: 'center', marginTop: '5px', marginBottom: '5px' }} />}
+            mapElement={<div style={{ height: '100%', width: '98%' }} />}
+            loadingElement={<div style={{ height: '100%' }}> Cargando... </div>}
+            coords={pos}
+          />}
+      />
+      <div className='d-flex justify-content-center align-items-center shadow-lg p-2 bg-success text-white m-1'>
+        <h5>Comercios Cercanos</h5>
       </div>
-      <div className='justify-content-center'>
+      <div style={{ margin: '5px' }}>
         <Route
           path='/'
           render={() => <Shops />}
         />
       </div>
+      <Route
+        path='/'
+        render={() => <Footer />}
+      />
     </div>
   )
 }
